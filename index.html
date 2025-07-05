@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altamira Gourmet | Experiencia culinaria exclusiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+        }
+        
+        .dish-card {
+            transition: all 0.3s ease;
+        }
+        
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .floating-whatsapp {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .scroll-container {
+            scroll-snap-type: x mandatory;
+        }
+        
+        .scroll-item {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transform-origin: top;
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: scaleY(0);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#mobile-menu.show {
+  max-height: 500px; /* suficiente para el menú */
+  opacity: 1;
+  transform: scaleY(1);
+}
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Header -->
+    <header class="fixed w-full bg-black bg-opacity-90 text-white z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold text-red-800 mr-2">AG</span>
+                <h1 class="text-xl font-semibold">ALTAMIRA <span class="text-red-800">GOURMET</span></h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="hover:text-red-800 transition">Inicio</a>
+                <a href="#menu" class="hover:text-red-800 transition">Menú</a>
+                <a href="#galeria" class="hover:text-red-800 transition">Galería</a>
+                <a href="#testimonios" class="hover:text-red-800 transition">Testimonios</a>
+                <a href="#contacto" class="hover:text-red-800 transition">Contacto</a>
+            </nav>
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+                </button>
+        </div>
+        <!-- Menú móvil -->
+                <nav id="mobile-menu" 
+                 class="md:hidden bg-black bg-opacity-95 text-white px-4 py-4 absolute top-full left-0 w-full flex-col space-y-4 z-40 border border-gray-300 p-4"
+                >
+                  <a href="#inicio" class="hover:text-red-800 transition py-4">Inicio</a>
+                  <a href="#menu" class="hover:text-red-800 transition py-4">Menú</a>
+                  <a href="#galeria" class="hover:text-red-800 transition py-4">Galería</a>
+                  <a href="#testimonios" class="hover:text-red-800 transition py-4">Testimonios</a>
+                  <a href="#contacto" class="hover:text-red-800 transition py-4">Contacto</a>
+                </nav>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-image flex items-center justify-center text-white pt-20 fade-in">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">EXPERIENCIA <span class="text-red-800">CULINARIA</span> ÚNICA</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Sabores exquisitos en el corazón de Altamira. Cocina de autor con ingredientes de primera calidad.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-red-800 hover:bg-red-900 text-white px-8 py-3 rounded-full font-semibold transition duration-300 transform hover:scale-105">VER MENÚ</a>
+                <a href="#contacto" class="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-8 py-3 rounded-full font-semibold transition duration-300 transform hover:scale-105">RESERVAR</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">NUESTROS <span class="text-red-800">DIFERENCIALES</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition duration-300">
+                    <div class="text-red-800 text-4xl mb-4">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Ingredientes Frescos</h3>
+                    <p class="text-gray-600">Seleccionamos cuidadosamente los mejores productos locales y orgánicos para garantizar la máxima calidad.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition duration-300">
+                    <div class="text-red-800 text-4xl mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Chef Ejecutivo</h3>
+                    <p class="text-gray-600">Nuestro chef con experiencia internacional crea platos innovadores que deleitan todos los sentidos.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition duration-300">
+                    <div class="text-red-800 text-4xl mb-4">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Bodega Exclusiva</h3>
+                    <p class="text-gray-600">Extensa selección de vinos premium cuidadosamente seleccionados para acompañar cada experiencia gastronómica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Preview Section -->
+    <section id="menu" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">EXPLORA NUESTRO <span class="text-red-800">MENÚ</span></h2>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-6 text-red-800">ENTRADAS</h3>
+                <div class="flex overflow-x-auto pb-6 scroll-container space-x-4">
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Entrada 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Tartar de Atún</h4>
+                            <p class="text-gray-600 text-sm mb-3">Atún fresco con aguacate, sésamo y salsa de soja.</p>
+                            <p class="text-red-800 font-semibold">$18</p>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                       <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Entrada 4" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Foie Gras</h4>
+                            <p class="text-gray-600 text-sm mb-3">Foie gras de pato con reducción de vino tinto y pan brioche.</p>
+                            <p class="text-red-800 font-semibold">$24</p>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Entrada 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Carpaccio de Res</h4>
+                            <p class="text-gray-600 text-sm mb-3">Finas láminas de res con rúcula, parmesano y alcaparras.</p>
+                            <p class="text-red-800 font-semibold">$16</p>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Entrada 4" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Ostras Frescas</h4>
+                            <p class="text-gray-600 text-sm mb-3">Ostras de la costa con limón y vinagre de champaña.</p>
+                            <p class="text-red-800 font-semibold">$22</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-6 text-red-800">PLATOS PRINCIPALES</h3>
+                <div class="flex overflow-x-auto pb-6 scroll-container space-x-4">
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Plato principal 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Ribeye 16oz</h4>
+                            <p class="text-gray-600 text-sm mb-3">Corte premium con puré de papas trufado y vegetales.</p>
+                            <p class="text-red-800 font-semibold">$38</p>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1371&q=80" alt="Plato principal 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Salmón a la Parrilla</h4>
+                            <p class="text-gray-600 text-sm mb-3">Salmón noruego con risotto de espárragos y salsa de eneldo.</p>
+                            <p class="text-red-800 font-semibold">$32</p>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80" alt="Plato principal 3" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Ravioli de Trufa</h4>
+                            <p class="text-gray-600 text-sm mb-3">Ravioli relleno de queso con salsa de trufa negra.</p>
+                            <p class="text-red-800 font-semibold">$28</p>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-item w-64 flex-shrink-0 dish-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Plato principal 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold text-lg mb-2">Cordero al Romero</h4>
+                            <p class="text-gray-600 text-sm mb-3">Pierna de cordero con puré de coliflor y reducción de vino.</p>
+                            <p class="text-red-800 font-semibold">$36</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="#" class="bg-red-800 hover:bg-red-900 text-white px-8 py-3 rounded-full font-semibold transition duration-300 inline-block">VER MENÚ COMPLETO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">GALERÍA <span class="text-red-800">FOTOGRÁFICA</span></h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurante" class="w-full h-64 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Barra" class="w-full h-64 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurante" class="w-full h-64 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Plato 1" class="w-full h-64 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Plato 2" class="w-full h-64 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Plato 3" class="w-full h-64 object-cover hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">OPINIONES DE <span class="text-red-800">NUESTROS CLIENTES</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-gray-100 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-red-800 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"La mejor experiencia gastronómica que he tenido en Altamira. El servicio impecable y los platos son obras de arte. ¡Volveré pronto!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente 1" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold">María González</h4>
+                            <p class="text-gray-500 text-sm">Cliente frecuente</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-gray-100 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-red-800 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Celebramos nuestro aniversario aquí y fue perfecto. La atención, el ambiente y la comida excedieron todas nuestras expectativas."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente 2" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold">Carlos Mendoza</h4>
+                            <p class="text-gray-500 text-sm">Primera visita</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-gray-100 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-red-800 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"El chef realmente sabe cómo sorprender. Cada plato es una explosión de sabores. Recomiendo especialmente el menú degustación con maridaje."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente 3" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold">Ana Torres</h4>
+                            <p class="text-gray-500 text-sm">Crítica gastronómica</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">RESERVACIONES Y <span class="text-red-800">CONTACTO</span></h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">HORARIOS</h3>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between border-b pb-2">
+                            <span>Lunes a Jueves</span>
+                            <span>12:00 PM - 10:00 PM</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2">
+                            <span>Viernes y Sábado</span>
+                            <span>12:00 PM - 11:30 PM</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2">
+                            <span>Domingo</span>
+                            <span>12:00 PM - 9:00 PM</span>
+                        </li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-semibold mt-8 mb-4">INFORMACIÓN DE CONTACTO</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-red-800 mt-1 mr-3"></i>
+                            <p>Avenida Principal, Altamira, Caracas 1060</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt text-red-800 mr-3"></i>
+                            <p>+58 212 555 1234</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-red-800 mr-3"></i>
+                            <p>reservaciones@altamiragourmet.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4">RESERVA TU MESA</h3>
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                                    <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
+                                    <input type="date" id="date" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800">
+                                </div>
+                                <div>
+                                    <label for="time" class="block text-sm font-medium text-gray-700 mb-1">Hora</label>
+                                    <input type="time" id="time" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="guests" class="block text-sm font-medium text-gray-700 mb-1">Número de personas</label>
+                                <select id="guests" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800">
+                                    <option value="1">1 persona</option>
+                                    <option value="2">2 personas</option>
+                                    <option value="3">3 personas</option>
+                                    <option value="4">4 personas</option>
+                                    <option value="5">5 personas</option>
+                                    <option value="6">6 personas</option>
+                                    <option value="7">7 personas</option>
+                                    <option value="8">8+ personas</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Notas adicionales</label>
+                                <textarea id="notes" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-800"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-red-800 hover:bg-red-900 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">RESERVAR AHORA</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                <h3 class="text-xl font-semibold mb-4 text-center">ENCUÉNTRANOS</h3>
+                <div class="h-96 w-full rounded-lg overflow-hidden shadow-lg">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.1056931856!2d-66.85382892480096!3d10.4918026637561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a58ad00000001%3A0x9319bda6c7e7c3a1!2sAltamira%2C%20Caracas!5e0!3m2!1sen!2sve!4v1689876543210!5m2!1sen!2sve" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/584125551234" class="fixed bottom-8 right-8 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg floating-whatsapp z-40">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl font-bold text-red-800 mr-2">AG</span>
+                        <h3 class="text-xl font-semibold">ALTAMIRA <span class="text-red-800">GOURMET</span></h3>
+                    </div>
+                    <p class="text-gray-400">Experiencia culinaria de excelencia en el corazón de Altamira.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ENLACES RÁPIDOS</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-400 hover:text-red-800 transition">Inicio</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-red-800 transition">Menú</a></li>
+                        <li><a href="#galeria" class="text-gray-400 hover:text-red-800 transition">Galería</a></li>
+                        <li><a href="#testimonios" class="text-gray-400 hover:text-red-800 transition">Testimonios</a></li>
+                        <li><a href="#contacto" class="text-gray-400 hover:text-red-800 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">CONTACTO</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-red-800 mt-1 mr-3"></i>
+                            <span>Avenida Principal, Altamira, Caracas 1060</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-red-800 mr-3"></i>
+                            <span>+58 212 555 1234</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-red-800 mr-3"></i>
+                            <span>info@altamiragourmet.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">SÍGUENOS</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 hover:bg-red-800 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-red-800 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-red-800 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    
+                    <h4 class="text-lg font-semibold mt-6 mb-2">NEWSLETTER</h4>
+                    <div class="flex">
+                        <input type="email" placeholder="Tu correo" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button class="bg-red-800 hover:bg-red-900 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Altamira Gourmet. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Animación al hacer scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fadeIn');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Menú móvil
+const toggleButton = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+toggleButton.addEventListener('click', () => {
+  mobileMenu.classList.toggle('show');
+});
+
+    // Cerrar el menú al hacer clic en un enlace
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('show');
+  });
+});
+  });
+</script>
+
+</body>
+</html>
